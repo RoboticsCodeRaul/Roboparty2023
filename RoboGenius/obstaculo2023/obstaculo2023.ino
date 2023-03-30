@@ -30,6 +30,7 @@ void setup()
     one.obstacleEmitters(ON);// activate obstacles detection
     one.lcd1("Modo: Obstaculos");
     //one.lcd2("");
+    
     while(one.readButton()==0)
        delay(50);
 }
