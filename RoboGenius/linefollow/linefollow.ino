@@ -36,7 +36,7 @@ float batmin=10.5;  // safety voltage for discharging the battery
 #define LIMITS 100.0
 //double kp=1320, ki=13, kd=260; //PID control gains <> Ganhos do controlo PID
 double kp=2.2, ki=0.0000, kd=40.0; //PID control gains <> Ganhos do controlo PID
-int vel=95;   //Max Speed <> Velocidade Máxima dos motores
+int vel=100;   //Max Speed <> Velocidade Máxima dos motores
 int vCurve=5; //Curve outside wheel max speed limit <> Limite de velocidade da roda exterior na curva
 
 void setup() 
@@ -45,21 +45,21 @@ void setup()
   one.spiConnect(SSPIN);   // starts the SPI communication module
   one.minBat(batmin);      // safety voltage for discharging the battery
   one.stop();              // stop motors
-  //readMenuEEPROM();        // read control values from EEPROM <> Ler valores de controlo da EEPROM
-  one.lcd1("Line Follow PID");
+  readMenuEEPROM();        // read control values from EEPROM <> Ler valores de controlo da EEPROM
+  one.lcd1("RAUL PROENCA");
   one.lcd2(" Press a button ");
+  while(one.readButton()==0);//Wait a button to be pressed <> Espera que pressione um botão
+  while(one.readButton()!=0);//Wait for button release <> Espera que largue o botão
 //  kp = 0.038; 
 //  ki = 0.0010;
 //  kd = 0.76;
-  one.lcd1("  Raul Proenca  "); // print on LCD line 1
-  one.lcd2("Caldas da Rainha");       // print on LCD line 2
   one.obstacleEmitters(OFF); // deactivate obstacles IR emitters
-  delay(4000);           // time to stabilize IR sensors (DO NOT REMOVE!!!)
-  static byte start = 0;
-  while (!start)
-  {
-    start = automatic_start();
-  }
+  // delay(4000);           // time to stabilize IR sensors (DO NOT REMOVE!!!)
+  // static byte start = 0;
+  // while (!start)
+  // {
+  //   start = automatic_start();
+  // }
 }
 
 bool automatic_start()
