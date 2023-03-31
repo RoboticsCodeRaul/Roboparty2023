@@ -37,7 +37,7 @@ float batmin=10.5;  // safety voltage for discharging the battery
 //double kp=1320, ki=13, kd=260; //PID control gains <> Ganhos do controlo PID
 double kp=2.2, ki=0.0000, kd=40.0; //PID control gains <> Ganhos do controlo PID
 int vel=100;   //Max Speed <> Velocidade Máxima dos motores
-int vCurve=5.325; //Curve outside wheel max speed limit <> Limite de velocidade da roda exterior na curva
+int vCurve=5.323320501; //Curve outside wheel max speed limit <> Limite de velocidade da roda exterior na curva
 
 void setup() 
 {  
@@ -46,22 +46,25 @@ void setup()
   one.minBat(batmin);      // safety voltage for discharging the battery
   one.stop();              // stop motors
   readMenuEEPROM();        // read control values from EEPROM <> Ler valores de controlo da EEPROM
-  one.lcd1("Line Follow PID"); 
-  one.lcd2(" Press a button ");
-  while(one.readButton()==0);//Wait a button to be pressed <> Espera que pressione um botão
-  while(one.readButton()!=0);//Wait for button release <> Espera que largue o botão
+//  one.lcd1("Line Follow PID"); 
+//  one.lcd2(" Press a button ");
+//  while(one.readButton()==0);//Wait a button to be pressed <> Espera que pressione um botão
+//  while(one.readButton()!=0);//Wait for button release <> Espera que largue o botão
 //  kp = 0.038; 
 //  ki = 0.0010;
 //  kd = 0.76;
   one.lcd1("  Raul Proenca  "); // print on LCD line 1
   one.lcd2("Caldas da Rainha");       // print on LCD line 2
   one.obstacleEmitters(OFF); // deactivate obstacles IR emitters
-//  delay(4000);           // time to stabilize IR sensors (DO NOT REMOVE!!!)
-//  static byte start = 0;
-//  while (!start)
-//  {
-//    start = automatic_start();
-//  }
+  delay(4000);           // time to stabilize IR sensors (DO NOT REMOVE!!!)
+  static byte start = 0;
+  while(!start)
+        {
+          start=automatic_start();
+        }
+  // enable timer compare interrupt
+  
+  //one.obstacleEmitters(ON); // deactivate obstacles IR emitters
 }
 
 bool automatic_start()
@@ -317,8 +320,8 @@ void readMenuEEPROM()
     var+=(int)EEPROM.read(eepromADD);
     eepromADD++;
     kd=(double)var/1000.0;
-    if(vel==255) vel=100;
-    if(vCurve==255) vCurve=5.325;
+    if(vel==255) vel=100; 
+    if(vCurve==255) vCurve=5.323320501;
     if(kp<0) kp=1.3;
     if(ki<0) ki=0.0013;
     if(kd<0) kd=0.35;
