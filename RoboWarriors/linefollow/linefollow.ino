@@ -37,7 +37,7 @@ float batmin=10.5;  // safety voltage for discharging the battery
 //double kp=1320, ki=13, kd=260; //PID control gains <> Ganhos do controlo PID
 double kp=2.2, ki=0.0000, kd=40.0; //PID control gains <> Ganhos do controlo PID
 int vel=100;   //Max Speed <> Velocidade Máxima dos motores
-int vCurve=5.32  5; //Curve outside wheel max speed limit <> Limite de velocidade da roda exterior na curva
+int vCurve=5.325; //Curve outside wheel max speed limit <> Limite de velocidade da roda exterior na curva
 
 void setup() 
 {  
