@@ -22,8 +22,8 @@ BnrOneA one;           // declaration of object variable to control the Bot'n Ro
 //constants definition
 #define SSPIN  2       // Slave Select (SS) pin for SPI communication
 int motL=0, motR=0;
-double kL=9;  //Linear gain <> Ganho linear
-int vel=75;
+double kL=8.7;  //Linear gain <> Ganho linear
+int vel=95;
 
 void setup() 
 {
