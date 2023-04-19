@@ -20,7 +20,7 @@ int sensor[8];
 
 void setup()
 {
-  
+  //Serial.begin(9600);
   one.spiConnect(SSPIN);  // start SPI communication module
 	one.stop();             // stop motors
   initialize_timer();     // configures the interrupt timer for the end of the challenge
@@ -126,7 +126,7 @@ void loop()
   switch(estado)
   {
     case 0: //anda para a frente até detetar linha de meio campo ou sensores obstaculos
-      one.move(50, 50);
+      one.move(45, 45);
 
       // se detetar algum obstáculo, altera a tarefa para andar para trás
       if(one.obstacleSensors() > 0) 
@@ -143,7 +143,7 @@ void loop()
       break;
 
     case 1: // anda para tras até os sensores estarem na parte branca
-      one.move(-80, -80);
+      one.move(-40, -40);
 
       // se detetar uma media dos sensores abaixo de 100 (todos os sensores a branca), 
       // altera a tarefa para andar para trás mas fica à espera que o robô seja levantado
@@ -155,7 +155,7 @@ void loop()
       break;
       
     case 2: //anda para trás até ser levantado
-      one.move(-80, -80);
+      one.move(-40, -40);
 
 
       // se detetar uma media dos sensores acima de 900 (todos os sensores a preto), altera a tarefa para andar para a frente
@@ -181,5 +181,6 @@ void loop()
       break;
       
   }
+
 
 }
